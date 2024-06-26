@@ -54,15 +54,15 @@ const App = () => {
     const average = ((good * 1) + (statistics.neutral * 0) + (statistics.bad * -1))/total
     const positive = (good * 100)/total
 
-    setStatistics(
-      {
-        ...statistics,
+    const newStatistics = {
+      ...statistics,
         good: good,
         total: total,
         average: average,
         positive: positive + "%"
-      }
-    )
+    }
+
+    setStatistics(newStatistics)
   }
 
   // Event handling
@@ -73,15 +73,15 @@ const App = () => {
     const average = ((statistics.good * 1) + (neutral * 0) + (statistics.bad * -1))/total
     const positive = (statistics.good * 100)/total
 
-    setStatistics(
-      {
-        ...statistics,
+    const newStatistics = {
+      ...statistics,
         neutral: neutral,
         total: total,
         average: average,
         positive: positive + "%"
-      }
-    )
+    }
+
+    setStatistics(newStatistics)
   }
 
   // Event handling
@@ -92,15 +92,15 @@ const App = () => {
     const average = ((statistics.good * 1) + (statistics.neutral * 0) + (bad * -1))/total
     const positive = (statistics.good * 100)/total
 
-    setStatistics(
-      {
-        ...statistics,
+    const newStatistics = {
+      ...statistics,
         bad: bad,
         total: total,
         average: average,
         positive: positive + "%"
-      }
-    )
+    }
+
+    setStatistics(newStatistics)
   }
 
   return (
