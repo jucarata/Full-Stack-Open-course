@@ -8,20 +8,20 @@ const blogs = require("../utils/consts")
 const mongoose = require("mongoose")
 const BASE_URL = "/api/blogs"
 
-describe.only("HTTP METHODS", () => {
+describe("HTTP METHODS", () => {
     beforeEach(async() => {
         await Blog.deleteMany({})
         await Blog.insertMany(blogs)
     })
     
-    it.only('blogs are returned as json', async () => {
+    it('blogs are returned as json', async () => {
         await api
           .get(BASE_URL)
           .expect(200)
           .expect('Content-Type', /application\/json/)
     })
     
-    it.only('All blogs saved are returned', async () => {
+    it('All blogs saved are returned', async () => {
         const response = await api.get(BASE_URL)
         const blogsReturned = response.body
         const blogsFormated = blogs.map(blog => {
@@ -37,7 +37,7 @@ describe.only("HTTP METHODS", () => {
         assert.deepStrictEqual(blogsReturned, blogsFormated)
     })
     
-    it.only('A blog is saved', async () => {
+    it('A blog is saved', async () => {
         const newBlog = {
             title: "JuanK isn't a blogs author, but it's a developer",
             author: "JuanK (Me)",
@@ -52,7 +52,7 @@ describe.only("HTTP METHODS", () => {
         assert.strictEqual(blogsReturned.length, blogs.length + 1)
     })
     
-    it.only('Likes are missed, default value is zero likes', async () => {
+    it('Likes are missed, default value is zero likes', async () => {
         const newBlog = {
             _id: "5a422a518b54a676432d17f7",
             title: "JuanK isn't a blogs author, but it's a developer",
@@ -67,7 +67,7 @@ describe.only("HTTP METHODS", () => {
         assert.strictEqual(blogsReturned.likes, 0)
     })
     
-    it.only('Content are missing, (title or url)', async () => {
+    it('Content are missing, (title or url)', async () => {
         const newBlog = {
             title: "JuanK isn't a blogs author, but it's a developer",
             author: "JuanK (Me)"
