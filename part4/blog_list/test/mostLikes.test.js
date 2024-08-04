@@ -1,14 +1,14 @@
 const {describe, it} = require("node:test")
 const assert = require("node:assert")
 const mostLikes = require("../utils/list_helper").mostLikes
-const blogs = require("../utils/consts")
+const blogs = require("../utils/consts").blogs
 
 
 describe("To find the author who has the most likes (Total likes)", () => {
 
     const authorWhoHasMostLikes = mostLikes(blogs)
     const expected = {
-        author: "Edsger W. Dijkstra",
+        author: "66aef65b787578268b603c1a",
         likes: 17
     }
 
