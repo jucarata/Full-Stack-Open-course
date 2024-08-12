@@ -1,0 +1,23 @@
+h2 {
+    color: blue;
+    display: block;
+}
+
+.login {
+    padding: 21px;
+    text-align: center;
+
+    & div {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    & button {
+        width: 28dvh;
+        color: white;
+        background: black;
+        border-radius: 7%;
+        cursor: pointer;
+    }
+
+}

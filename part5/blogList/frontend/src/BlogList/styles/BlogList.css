@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    place-content: center;
+    border: 1px solid black;
+
+    & span {
+        display: inline;
+        place-items: center;
+    }
+}
+
+.user-profile {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    & label{
+        position: absolute;
+        font-weight: bold;
+        left: 50px;
+        top: 0px;
+        font-size: 80%;
+    }
+
+    & span {
+        display: block;
+        border: 1px solid black;
+        padding-left: 20px;
+        padding-right: 5px;
+    }
+}
