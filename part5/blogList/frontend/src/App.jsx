@@ -8,15 +8,12 @@ import { Login } from './Login/pages/Login'
 import { BlogsList } from './BlogList/pages/BlogsList'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [tokenAble, setTokenAble] = useState(null)
+  const [isLogged, setIsLogged] = useState(false)
 
-  /* useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
-  }, []) */
+  useEffect(() => {
+      window.localStorage.clear()
+  }, [])
 
   async function handlerLogin(event){
     event.preventDefault()
@@ -25,11 +22,19 @@ const App = () => {
       const res = await login(user.value, password.value)
       const {token, username, name} = res.data
       setUser({username, name})
-      setTokenAble(token)
+      setIsLogged(!isLogged)
+
+      window.localStorage.setItem("userLogged", JSON.stringify({token, user: {username, name}}))
     } catch (error) {
       console.error("Caught an error:", error)
       window.alert("Unauthorized")
     }
+  }
+
+  function handlerLogOut(){
+    setIsLogged(!isLogged)
+    setUser(null)
+    window.localStorage.clear()
   }
 
   return (
@@ -38,7 +43,9 @@ const App = () => {
         <span>Welcome to <b className='title'>Blogs List</b></span>
       </header>
       {/* Conditional render */}
-      {(!user)? <Login handlerLogin={handlerLogin}/> :  <BlogsList userLogged={user}/>} 
+      <div>
+        {(!isLogged)? <Login handlerLogin={handlerLogin}/> :  <BlogsList handlerLogout={handlerLogOut}/>} 
+      </div>
     </main>
   )
 }
