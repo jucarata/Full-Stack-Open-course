@@ -8,9 +8,9 @@ It is being implemented using REACT (frontend) and Express (backend), which also
 ### The app includes:
 
 ### Login session
-![Descripción de la imagen](/images/login.png)
+![A basic login page, which contains a title, two inputs and one button](./images/login.png)
 
 ### BlogList page (main page)
-Coming soon
+![A blog list page, which contains a form to create new blogs and a table to view them](./images/bloglistpage.png)
 
 Author: Juan Camilo Ramirez Tabares
