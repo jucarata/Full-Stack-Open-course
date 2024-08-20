@@ -1,0 +1,17 @@
+.alert {
+    color: rgb(211, 79, 74);
+    border: 1px solid rgb(211, 79, 74);
+    background: rgb(211, 218, 201);
+    padding: 20px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.success {
+    color: rgb(28, 192, 28);
+    border: 1px solid rgb(28, 192, 28);
+    background: rgb(211, 218, 201);
+    padding: 20px;
+    font-weight: bold;
+    margin-top: 4px;
+}

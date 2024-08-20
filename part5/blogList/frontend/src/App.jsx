@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 
+//Components
+import { Notification } from './Notifications/components/Notification'
+
 // Services
 import login from './Login/services/login'
 
@@ -8,8 +11,10 @@ import { Login } from './Login/pages/Login'
 import { BlogsList } from './BlogList/pages/BlogsList'
 
 const App = () => {
-  const [user, setUser] = useState(null)
   const [isLogged, setIsLogged] = useState(false)
+
+  const [notification, setNotification] = useState(false)
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
       window.localStorage.clear()
@@ -21,29 +26,34 @@ const App = () => {
     try {
       const res = await login(user.value, password.value)
       const {token, username, name} = res.data
-      setUser({username, name})
       setIsLogged(!isLogged)
 
       window.localStorage.setItem("userLogged", JSON.stringify({token, user: {username, name}}))
     } catch (error) {
       console.error("Caught an error:", error)
-      window.alert("Unauthorized")
+      setMessage(error.response.data.error)
+      setNotification(true)
+
+      setTimeout(() => {
+        setMessage("")
+        setNotification(false)
+      }, 2000)
     }
   }
 
   function handlerLogOut(){
     setIsLogged(!isLogged)
-    setUser(null)
     window.localStorage.clear()
   }
 
   return (
     <main>
       <header className='header'>
-        <span>Welcome to <b className='title'>Blogs List</b></span>
+        <span>Welcome to <b className='title'>BLOGS LIST</b></span>
       </header>
       {/* Conditional render */}
-      <div>
+      <div className='body'>
+        {notification && <Notification type={"alert"} message={message}/>}
         {(!isLogged)? <Login handlerLogin={handlerLogin}/> :  <BlogsList handlerLogout={handlerLogOut}/>} 
       </div>
     </main>

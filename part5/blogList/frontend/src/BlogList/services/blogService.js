@@ -16,4 +16,9 @@ async function getAll() {
   return await axios.get(baseUrl, config)
 }
 
-export default { getAll }
+async function post (newBlog) {
+  const config = getAuthorization()
+  return await axios.post(baseUrl, newBlog, config)
+}
+
+export default { getAll, post }
